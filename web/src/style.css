@@ -1,96 +1,223 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #0f0f0f;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Sidebar (chap panel) */
+.sidebar {
+    width: 270px;
+    background: linear-gradient(180deg, #1a1a1a, #121212);
+    padding: 20px;
+    border-right: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
-.card {
-  padding: 2em;
+.new-chat {
+    background: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #3a3a3a;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.read-the-docs {
-  color: #888;
+.new-chat:hover {
+    background: #3a3a3a;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.chat-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.chat-item {
+    background-color: #2a2a2a;
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #cccccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chat-item:hover {
+    background-color: #3a3a3a;
+}
+
+.chat-item.active {
+    background-color: #404040;
+    font-weight: bold;
+}
+
+/* O'ng panel */
+.chat-area {
+    flex: 1;
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Yuqori AI model tanlov */
+.top-bar {
+    padding: 16px 20px 10px;
+    border-bottom: 1px solid #2c2c2c;
+    background-color: #1a1a1a;
+}
+
+.model-select {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: white;
+    padding: 10px 40px 10px 14px; /* right padding icon uchun */
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='10' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23fff' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    cursor: pointer;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+.model-select:hover {
+    border-color: #ff8a65;
+    box-shadow: 0 0 0 2px rgba(255, 138, 101, 0.2);
+}
+
+.model-select:focus {
+    border-color: #ff8a65;
+    box-shadow: 0 0 0 2px rgba(255, 138, 101, 0.4);
+}
+/* Chat xabarlari */
+.messages {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.message {
+    max-width: 70%;
+    margin-bottom: 15px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.message.bot {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    align-self: flex-start;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.message.user {
+    background: linear-gradient(135deg, #e2654f, #ff8a65);
+    color: white;
+    align-self: flex-end;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Pastki input maydon */
+.input-area {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(26, 26, 26, 0.85);
+    border-top: 1px solid #2d2d2d;
+    backdrop-filter: blur(8px);
+}
+
+.input-area-inner {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 900px;
+    gap: 12px;
+}
+
+.input-box {
+    flex: 1;
+    min-height: 48px;
+    max-height: 160px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background-color: #2a2a2a;
+    color: white;
+    font-size: 15px;
+    overflow-y: auto;
+    border: 1px solid transparent;
+    line-height: 1.5;
+    transition: border 0.3s;
+    position: relative;
+}
+
+.input-box:focus {
+    outline: none;
+    border: 1px solid #ff8a65;
+}
+
+.input-box:empty::before {
+    content: attr(placeholder);
+    color: #888;
+    pointer-events: none;
+    position: absolute;
+    left: 16px;
+    top: 14px;
+}
+
+.input-box::-webkit-scrollbar {
+    width: 6px;
+}
+.input-box::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+.input-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.input-area button {
+    background: linear-gradient(135deg, #e2654f, #ff8a65);
+    color: white;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    height: fit-content;
+}
+
+.input-area button:hover {
+    background: linear-gradient(135deg, #f06c53, #ffa07a);
 }

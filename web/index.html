@@ -1,13 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AI Chat</title>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Chap panel -->
+            <aside class="sidebar">
+                <button class="new-chat">+ Yangi Chat</button>
+                <div class="chat-list">
+                    <div class="chat-item active">Chat 1</div>
+                    <div class="chat-item">Chat 2</div>
+                </div>
+            </aside>
+
+            <!-- O'ng panel -->
+            <main class="chat-area">
+                <!-- Yuqorida model tanlash -->
+                <div class="top-bar">
+                    <select class="model-select">
+                        <option value="1">Groq AI</option>
+                        <option value="2">Mistral</option>
+                        <option value="3">Gemini</option>
+                    </select>
+                </div>
+
+                <!-- Xabarlar -->
+                <div class="messages" id="messages"></div>
+
+                <!-- Pastki input -->
+                <div class="input-area">
+                    <div class="input-area-inner">
+                        <div
+                            class="input-box"
+                            id="input"
+                            contenteditable="true"
+                            placeholder="Xabar yozing..."
+                        ></div>
+                        <button id="send">Yuborish</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script type="module" src="/src/main.js"></script>
+    </body>
 </html>
